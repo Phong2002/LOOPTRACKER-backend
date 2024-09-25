@@ -1,13 +1,9 @@
 package com.looptracker.looptracker.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -16,6 +12,7 @@ import java.time.Instant;
 public class OtpRequest {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @Column(name = "otp", nullable = false)
@@ -25,10 +22,10 @@ public class OtpRequest {
     private String email;
 
     @Column(name = "create_at", nullable = false)
-    private Instant createAt;
+    private LocalDateTime createAt;
 
     @Column(name = "expires_at", nullable = false)
-    private Instant expiresAt;
+    private LocalDateTime expiresAt;
 
     @Column(name = "is_used", nullable = false)
     private Boolean isUsed = false;
