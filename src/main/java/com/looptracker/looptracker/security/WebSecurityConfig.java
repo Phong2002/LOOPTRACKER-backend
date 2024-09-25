@@ -38,6 +38,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("swagger-ui/**").permitAll()
                         .requestMatchers("api/v1/auth/*").permitAll()
+                        .requestMatchers("/api/v1/registration-request/easy-rider").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess
