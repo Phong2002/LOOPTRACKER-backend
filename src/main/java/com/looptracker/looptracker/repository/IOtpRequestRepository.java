@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IOtpRequestRepository extends JpaRepository<OtpRequest, Integer> {
+    OtpRequest findByEmail(String email);
 }
