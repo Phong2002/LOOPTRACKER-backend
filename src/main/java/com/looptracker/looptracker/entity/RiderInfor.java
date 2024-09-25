@@ -17,8 +17,8 @@ public class RiderInfor {
     @Column(name = "license_number", length = 50)
     private String licenseNumber;
 
-    @Column(name = "citizenId_number", length = 50)
-    private String citizenidNumber;
+    @Column(name = "citizen_id_number", length = 50)
+    private String citizenIdNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
