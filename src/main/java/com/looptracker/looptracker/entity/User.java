@@ -13,16 +13,15 @@ public class User {
     @Column(name = "id", nullable = false)
     private String id;
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "phoneNumber", length = 20)
+    @Column(name = "phone_number", length = 20)
     private String phoneNumber;
 
-    @Lob
     @Column(name = "gender", nullable = false)
     private String gender;
 
@@ -35,7 +34,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Lob
     @Column(name = "role", nullable = false)
     private String role;
 
