@@ -1,13 +1,10 @@
 package com.looptracker.looptracker.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.looptracker.looptracker.entity.enums.RegistrationStatus;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -16,10 +13,11 @@ import java.time.Instant;
 public class RegistrationRequest {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Column(name = "firt_name", nullable = false)
-    private String firtName;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
@@ -36,13 +34,14 @@ public class RegistrationRequest {
     @Column(name = "license_number", nullable = false)
     private String licenseNumber;
 
-    @Column(name = "citizenId_number", nullable = false)
-    private String citizenidNumber;
+    @Column(name = "citizen_id_number", nullable = false)
+    private String citizenIdNumber;
 
     @Column(name = "status", nullable = false)
-    private Long status;
+    @Enumerated(EnumType.STRING)
+    private RegistrationStatus status;
 
     @Column(name = "create_at", nullable = false)
-    private Instant createAt;
+    private LocalDateTime createAt;
 
 }
