@@ -6,5 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IRegistrationRequestRepository extends JpaRepository<RegistrationRequest, Integer> {
+    boolean existsByCitizenIdNumber(String citizenIdNumber);
+    boolean existsByLicenseNumber(String licenseNumber);
+    boolean existsByEmail(String email);
+    boolean existsByPhoneNumber(String phoneNumber);
 
 }
