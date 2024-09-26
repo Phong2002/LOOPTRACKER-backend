@@ -1,6 +1,7 @@
 package com.looptracker.looptracker.controller;
 
 import com.looptracker.looptracker.dto.request.TourPackageRequest;
+import com.looptracker.looptracker.mapper.TourPackageMapper;
 import com.looptracker.looptracker.repository.ITourPackageRepository;
 import com.looptracker.looptracker.service.TourPackageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class TourPackageController {
     private TourPackageService tourPackageService;
 
     @Autowired
-    private ITourPackageRepository tourPackageRepository;
+    private TourPackageMapper tourPackageMapper;
 
     @PostMapping("create")
     ResponseEntity<?> create(@RequestBody TourPackageRequest tourPackageRequest) {
@@ -25,6 +26,12 @@ public class TourPackageController {
 
     @GetMapping("get-all")
     ResponseEntity<?> getAll(Pageable pageable){
-        return ResponseEntity.ok(tourPackageRepository.findAll( pageable));
+        return ResponseEntity.ok(tourPackageService.getAllTourPackages(pageable));
+    }
+
+    @DeleteMapping("delete")
+    ResponseEntity<?> delete(@RequestParam String tourPackageId) {
+        tourPackageService.deleteTourPackage(tourPackageId);
+        return ResponseEntity.ok("Successfully deleted tour package");
     }
 }
