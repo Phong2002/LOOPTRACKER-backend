@@ -1,5 +1,8 @@
 package com.looptracker.looptracker.dto.request;
 
+import com.looptracker.looptracker.entity.enums.Gender;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +19,8 @@ public class RegistrationRequestDto {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     private String email;
     private String licenseNumber;
     private String citizenIdNumber;
