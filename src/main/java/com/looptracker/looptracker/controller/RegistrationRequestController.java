@@ -1,6 +1,6 @@
 package com.looptracker.looptracker.controller;
 
-import com.looptracker.looptracker.dto.request.RegistrationRequestDto;
+import com.looptracker.looptracker.dto.RegistrationRequestDto;
 import com.looptracker.looptracker.dto.request.SigninForm;
 import com.looptracker.looptracker.repository.IRegistrationRequestRepository;
 import com.looptracker.looptracker.service.IRegistrationRequestService;
