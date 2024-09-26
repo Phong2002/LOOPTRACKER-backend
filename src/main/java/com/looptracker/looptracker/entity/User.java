@@ -1,5 +1,7 @@
 package com.looptracker.looptracker.entity;
 
+import com.looptracker.looptracker.entity.enums.Gender;
+import com.looptracker.looptracker.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +13,7 @@ import lombok.Setter;
 public class User {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @Column(name = "first_name")
@@ -23,7 +26,8 @@ public class User {
     private String phoneNumber;
 
     @Column(name = "gender", nullable = false)
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Column(name = "email")
     private String email;
@@ -35,6 +39,7 @@ public class User {
     private String password;
 
     @Column(name = "role", nullable = false)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }
