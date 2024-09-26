@@ -1,5 +1,6 @@
 package com.looptracker.looptracker.entity;
 
+import com.looptracker.looptracker.entity.enums.Gender;
 import com.looptracker.looptracker.entity.enums.RegistrationStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -26,7 +27,8 @@ public class RegistrationRequest {
     private String phoneNumber;
 
     @Column(name = "gender", nullable = false)
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Column(name = "email", nullable = false)
     private String email;
