@@ -4,8 +4,10 @@ import com.looptracker.looptracker.dto.DetailedItineraryDto;
 import com.looptracker.looptracker.dto.TourPackageDto;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class TourPackageRequest {
     private TourPackageDto tourPackage;
-    private DetailedItineraryDto detailedItinerary;
+    private List<DetailedItineraryDto> detailedItinerary;
 }

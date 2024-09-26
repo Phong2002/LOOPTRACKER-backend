@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,9 +15,10 @@ import java.time.Instant;
 @SuperBuilder
 public class DetailedItineraryDto {
     private Integer id;
+    private String route;
     private TourPackage tourPackage;
     private Integer day;
     private String description;
-    private Instant createAt;
-    private Instant updateAt;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
 }
