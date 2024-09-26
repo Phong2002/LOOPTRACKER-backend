@@ -1,6 +1,6 @@
 package com.looptracker.looptracker.mapper;
 
-import com.looptracker.looptracker.dto.request.RegistrationRequestDto;
+import com.looptracker.looptracker.dto.RegistrationRequestDto;
 import com.looptracker.looptracker.entity.RegistrationRequest;
 import org.mapstruct.Mapper;
 
