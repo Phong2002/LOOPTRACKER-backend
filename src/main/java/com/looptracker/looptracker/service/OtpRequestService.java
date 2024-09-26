@@ -41,6 +41,7 @@ public class OtpRequestService implements IOtpRequestService {
         }
         registrationRequest.setStatus(RegistrationStatus.PENDING);
         registrationRequestRepository.save(registrationRequest);
+        otpRequestRepository.delete(otpRequest);
         return verifyOtpResponse.builder().code(20000).success(true).message("Xác thực OTP thành công").build();
     }
 }
