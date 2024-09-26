@@ -1,4 +1,4 @@
-package com.looptracker.looptracker.dto.request;
+package com.looptracker.looptracker.dto;
 
 import com.looptracker.looptracker.entity.enums.Gender;
 import jakarta.persistence.EnumType;
