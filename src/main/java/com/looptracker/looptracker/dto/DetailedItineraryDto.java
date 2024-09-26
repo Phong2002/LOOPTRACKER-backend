@@ -1,6 +1,5 @@
 package com.looptracker.looptracker.dto;
 
-import com.looptracker.looptracker.entity.TourPackage;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +15,6 @@ import java.time.LocalDateTime;
 public class DetailedItineraryDto {
     private Integer id;
     private String route;
-    private TourPackage tourPackage;
     private Integer day;
     private String description;
     private LocalDateTime createAt;
