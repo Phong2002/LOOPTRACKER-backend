@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Thông báo Đăng ký Thành công</title>
+
+  <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet"
+  />
+</head>
+<body
+        style="
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      font-size: 14px;
+    "
+>
+<div
+        style="
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 45px 30px 60px;
+        background: #f4f7ff;
+        background-image: url(https://archisketch-resources.s3.ap-northeast-2.amazonaws.com/vrstyler/1661497957196_595865/email-template-background-banner);
+        background-repeat: no-repeat;
+        background-size: 800px 452px;
+        background-position: top center;
+        font-size: 14px;
+        color: #434343;
+      "
+>
+  <header>
+    <table style="width: 100%;">
+      <tbody>
+      </tbody>
+    </table>
+  </header>
+
+  <main>
+    <div
+            style="
+            margin: 0;
+            margin-top: 50px;
+            padding: 50px 30px 20px;
+            background: #ffffff;
+            border-radius: 30px;
+            text-align: center;
+          "
+    >
+      <div style="width: 100%; max-width: 640; margin: 0 auto;">
+        <div>
+          <img
+                  src="https://cdn.discordapp.com/attachments/953496613878399026/1288395325282848808/logo.png?ex=66f50726&is=66f3b5a6&hm=5f176e47d3b675437cf40103b6bc806f83bc1f222f3a3de395bbcd1882f56b9e&" alt="Logo">
+        </div>
+        <div>
+          <h2 style="color: forestgreen;">LOOP TRACKER</h2>
+        </div>
+        <p style="
+                margin: 0;
+                margin-top: 17px;
+                font-size: 16px;
+                font-weight: 500;
+              ">
+          Xin chào,</p>
+        <p th:text="${fullName}" style="display: inline; font-size: 16px; font-weight: 500;"></p>
+        <p>Cảm ơn bạn đã đăng ký trở thành EasyRider của <strong>LoopTracker</strong>. Chúng tôi rất hân hạnh chào đón bạn gia nhập đội ngũ tài xế chuyên nghiệp, hỗ trợ và hướng dẫn các tour trong chuyến hành trình tại Hà Giang.</p>
+        <p>Dưới đây là thông tin tài khoản của bạn để sử dụng ứng dụng:</p>
+        <p style="
+                margin: 0;
+                font-size: 16px;
+                font-weight: 600;
+              ">
+          Tài khoản: <strong th:text="${username}"></strong><br>
+          Mật khẩu: <strong th:text="${password}"></strong>
+        </p>
+        <p>Vui lòng thay đổi mật khẩu ngay khi đăng nhập lần đầu.</p>
+        <p>Nếu bạn có bất kỳ câu hỏi nào hoặc cần trợ giúp, đừng ngần ngại liên hệ với chúng tôi!</p>
+        <p>Chúc bạn có những trải nghiệm tuyệt vời và những chuyến đi an toàn cùng LoopTracker!</p>
+      </div>
+    </div>
+
+    <p
+            style="
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 90px;
+            text-align: center;
+            font-weight: 500;
+            color: #8c8c8c;
+          ">
+      Nếu bạn cần giúp đỡ? hãy liên hệ
+      <a
+              href="mailto:looptracker.travel@gmail.com"
+              style="color: #499fb6; text-decoration: none;"
+      >looptracker.travel@gmail.com</a>
+    </p>
+  </main>
+
+  <footer
+          style="
+          width: 100%;
+          max-width: 490px;
+          margin: 20px auto 0;
+          text-align: center;
+          border-top: 1px solid #e6ebf1;
+        ">
+    <p
+            style="
+            margin: 0;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #434343;
+          ">
+      LOOPTRACKER
+    </p>
+    <p style="margin: 0; margin-top: 8px; color: #434343;">
+      địa chỉ 120 Quang Trung - thành phố Hà Giang.
+    </p>
+    <div style="margin: 0; margin-top: 8px;">
+      <a href="" target="_blank" style="display: inline-block;">
+        <img
+                width="36px"
+                alt="Facebook"
+                src="https://archisketch-resources.s3.ap-northeast-2.amazonaws.com/vrstyler/1661502815169_682499/email-template-icon-facebook"
+        />
+      </a>
+      <a
+              href=""
+              target="_blank"
+              style="display: inline-block; margin-left: 8px;"
+      >
+        <img
+                width="36px"
+                alt="Instagram"
+                src="https://archisketch-resources.s3.ap-northeast-2.amazonaws.com/vrstyler/1661504218208_684135/email-template-icon-instagram"
+        /></a>
+      <a
+              href=""
+              target="_blank"
+              style="display: inline-block; margin-left: 8px;"
+      >
+        <img
+                width="36px"
+                alt="Twitter"
+                src="https://archisketch-resources.s3.ap-northeast-2.amazonaws.com/vrstyler/1661503043040_372004/email-template-icon-twitter"
+        />
+      </a>
+      <a
+              href=""
+              target="_blank"
+              style="display: inline-block; margin-left: 8px;"
+      >
+        <img
+                width="36px"
+                alt="Youtube"
+                src="https://archisketch-resources.s3.ap-northeast-2.amazonaws.com/vrstyler/1661503195931_210869/email-template-icon-youtube"
+        /></a>
+    </div>
+    <p style="margin: 0; margin-top: 8px; color: #434343;">
+      Copyright © 2024 looptracker. All rights reserved.
+    </p>
+  </footer>
+</div>
+</body>
+</html>
