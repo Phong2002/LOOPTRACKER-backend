@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,4 +24,5 @@ public class TourPackageDto {
     private Long price;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
+    private List<DetailedItineraryDto> detailedItineraryDtoList;
 }
