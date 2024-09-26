@@ -1,6 +1,6 @@
 package com.looptracker.looptracker.service;
 
-import com.looptracker.looptracker.dto.request.RegistrationRequestDto;
+import com.looptracker.looptracker.dto.RegistrationRequestDto;
 import com.looptracker.looptracker.entity.OtpRequest;
 import com.looptracker.looptracker.entity.RegistrationRequest;
 import com.looptracker.looptracker.entity.RiderInfor;
@@ -38,12 +38,12 @@ public class RegistrationRequestService implements IRegistrationRequestService {
     private RegistrationRequestMapper registrationRequestMapper;
     @Autowired
     private IRiderInforRepository riderInforRepository;
-   @Autowired
-   private ApplicationEventPublisher applicationEventPublisher;
-   @Autowired
-   private IOtpRequestRepository otpRequestRepository;
-   @Autowired
-   private Authentication authentication;
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
+    @Autowired
+    private IOtpRequestRepository otpRequestRepository;
+    @Autowired
+    private Authentication authentication;
     @Override
     @Transactional
     public void registrationRequest(RegistrationRequestDto registrationRequestDto) {
@@ -87,6 +87,7 @@ public class RegistrationRequestService implements IRegistrationRequestService {
     }
 
     @Override
+    @Transactional
     public void confirm(String requestId) {
          RegistrationRequest registrationRequest = registrationRequestRepository.findById(requestId).orElseThrow(
                 ()-> new CustomException(400,"Không tìm thấy yêu cầu")
@@ -120,8 +121,6 @@ public class RegistrationRequestService implements IRegistrationRequestService {
         model.put("username", username);
         model.put("password", password);
         applicationEventPublisher.publishEvent(new SendAccountInforEvent(this,user.getEmail(),model));
-
-
     }
 
     private String generateUsername(String firstName, String lastName) {
