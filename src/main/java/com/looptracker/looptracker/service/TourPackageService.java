@@ -20,13 +20,13 @@ import java.util.List;
 @Service
 public class TourPackageService implements ITourPackageService {
     @Autowired
-    ITourPackageRepository tourPackageRepository;
+    private ITourPackageRepository tourPackageRepository;
     @Autowired
-    IDetailedItineraryRepository detailedItineraryRepository;
+    private IDetailedItineraryRepository detailedItineraryRepository;
     @Autowired
-    TourPackageMapper tourPackageMapper;
+    private TourPackageMapper tourPackageMapper;
     @Autowired
-    DetailedItineraryMapper detailedItineraryMapper;
+    private DetailedItineraryMapper detailedItineraryMapper;
 
     @Override
     @Transactional
