@@ -1,5 +1,6 @@
 package com.looptracker.looptracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.looptracker.looptracker.entity.enums.Gender;
 import com.looptracker.looptracker.entity.enums.Role;
 import jakarta.persistence.*;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "users", schema = "looptracker")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     @Id
     @Column(name = "id", nullable = false)
