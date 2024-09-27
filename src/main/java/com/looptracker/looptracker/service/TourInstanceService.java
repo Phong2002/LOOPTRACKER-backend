@@ -1,35 +1,105 @@
 package com.looptracker.looptracker.service;
 
-import com.looptracker.looptracker.dto.TourPackageDto;
-import com.looptracker.looptracker.dto.request.TourPackageRequest;
+import com.looptracker.looptracker.dto.TourInstanceDto;
+import com.looptracker.looptracker.dto.request.TourInstanceRequest;
+import com.looptracker.looptracker.entity.TourInstance;
+import com.looptracker.looptracker.entity.TourPackage;
+import com.looptracker.looptracker.entity.User;
+import com.looptracker.looptracker.entity.enums.Role;
+import com.looptracker.looptracker.exception.CustomException;
+import com.looptracker.looptracker.mapper.TourInstanceMapper;
+import com.looptracker.looptracker.repository.IRiderInforRepository;
+import com.looptracker.looptracker.repository.ITourInstanceRepository;
+import com.looptracker.looptracker.repository.ITourPackageRepository;
+import com.looptracker.looptracker.repository.IUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TourInstanceService implements ITourPackageService{
+public class TourInstanceService implements ITourInstanceService {
+    @Autowired
+    private ITourInstanceRepository tourInstanceRepository;
+    @Autowired
+    private TourInstanceMapper tourInstanceMapper;
+    @Autowired
+    private IUserRepository userRepository;
+    @Autowired
+    private ITourPackageRepository tourPackageRepository;
+    @Autowired
+    private IRiderInforRepository riderInforRepository;
+
+
     @Override
-    public void createTourPackage(TourPackageRequest tourPackageRequest) {
+    public void createTourInstance(TourInstanceRequest tourInstanceRequest) {
+        TourInstance tourInstance = new TourInstance();
+
+        if (tourInstanceRequest.getTourGuide() != null && !tourInstanceRequest.getTourGuide().equals("")) {
+            if (!userRepository.existsById(tourInstanceRequest.getTourGuide())) {
+                throw new CustomException(404, "Can't found tour guide");
+            }
+            if (!userRepository.findById(tourInstanceRequest.getTourGuide()).get().getRole().equals(Role.TOUR_GUIDE)) {
+                throw new CustomException(400, "must have role tour guide");
+            }
+            User user = new User();
+            user.setId(tourInstanceRequest.getTourGuide());
+            tourInstance.setTourGuide(user);
+        }
+
+        if (!tourPackageRepository.existsById(tourInstanceRequest.getTourPackage())) {
+            throw new CustomException(404, "Can't found tour package");
+        }
+
+        TourPackage tourPackage = new TourPackage();
+        tourPackage.setId(tourInstanceRequest.getTourPackage());
+
+        tourInstance.setTourPackage(tourPackage);
+        tourInstance.setStartDate(tourInstanceRequest.getStartDate());
+        tourInstance.setEndDate(tourInstanceRequest.getEndDate());
+        tourInstanceRepository.save(tourInstance);
+    }
+
+    @Override
+    public void updateTourInstance(TourInstanceRequest tourInstanceRequest) {
+        TourInstance tourInstance = tourInstanceRepository.findById(tourInstanceRequest.getId()).orElseThrow(
+                () -> new CustomException(404, "Can't found tour instance")
+        );
+
+        User user = userRepository.findById(tourInstanceRequest.getTourGuide()).orElseThrow(
+                () -> new CustomException(404, "Can't found tour guide"));
+
+        if (!user.getRole().equals(Role.TOUR_GUIDE)) {
+            throw new CustomException(400, "must have role tour guide");
+        }
+
+        if (tourInstance.getTourGuide() == null ||
+                !tourInstance.getTourGuide().getId().equals(tourInstanceRequest.getTourGuide())) {
+            tourInstance.setTourGuide(user);
+        }
+
+
+        if (!tourInstance.getTourPackage().getId().equals(tourInstanceRequest.getTourPackage())) {
+            TourPackage tourPackage = tourPackageRepository.findById(tourInstanceRequest.getTourPackage()).orElseThrow(
+                    () -> new CustomException(404, "Can't found tour package"));
+            tourInstance.setTourPackage(tourPackage);
+        }
+
+        tourInstance.setStartDate(tourInstanceRequest.getStartDate());
+        tourInstance.setEndDate(tourInstanceRequest.getEndDate());
+        tourInstanceRepository.save(tourInstance);
 
     }
 
     @Override
-    public Page<TourPackageDto> getAllTourPackages(Pageable pageable) {
-        return null;
+    public void deleteTourInstance(Long tourInstanceId) {
+        tourInstanceRepository.deleteById(tourInstanceId);
     }
 
     @Override
-    public TourPackageDto getTourPackage(String id) {
-        return null;
-    }
-
-    @Override
-    public void updateTourPackage(TourPackageDto tourPackageDto) {
-
-    }
-
-    @Override
-    public void deleteTourPackage(String id) {
-
+    public Page<TourInstanceDto> getAllTourInstances(Pageable pageable) {
+        Page<TourInstance> tourInstances = tourInstanceRepository.findAll(pageable);
+        Page<TourInstanceDto> tourInstanceDtos = tourInstanceMapper.toPageDto(tourInstances);
+        return tourInstanceDtos;
     }
 }
