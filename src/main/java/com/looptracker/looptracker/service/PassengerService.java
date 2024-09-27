@@ -16,10 +16,10 @@ import java.util.List;
 @Service
 public class PassengerService implements IPassengerService {
     @Autowired
-    IPassengerRepository passengerRepository;
+    private IPassengerRepository passengerRepository;
 
     @Autowired
-    PassengerMapper passengerMapper;
+    private PassengerMapper passengerMapper;
 
     @Override
     @Transactional

@@ -1,5 +1,6 @@
 package com.looptracker.looptracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "tour_packages", schema = "looptracker")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TourPackage {
     @Id
     @Column(name = "id", nullable = false)
