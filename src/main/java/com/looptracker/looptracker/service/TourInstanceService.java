@@ -12,6 +12,7 @@ import com.looptracker.looptracker.repository.IRiderInforRepository;
 import com.looptracker.looptracker.repository.ITourInstanceRepository;
 import com.looptracker.looptracker.repository.ITourPackageRepository;
 import com.looptracker.looptracker.repository.IUserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,11 +28,9 @@ public class TourInstanceService implements ITourInstanceService {
     private IUserRepository userRepository;
     @Autowired
     private ITourPackageRepository tourPackageRepository;
-    @Autowired
-    private IRiderInforRepository riderInforRepository;
-
 
     @Override
+    @Transactional
     public void createTourInstance(TourInstanceRequest tourInstanceRequest) {
         TourInstance tourInstance = new TourInstance();
 
@@ -40,7 +39,7 @@ public class TourInstanceService implements ITourInstanceService {
                 throw new CustomException(404, "Can't found tour guide");
             }
             if (!userRepository.findById(tourInstanceRequest.getTourGuide()).get().getRole().equals(Role.TOUR_GUIDE)) {
-                throw new CustomException(400, "must have role tour guide");
+                throw new CustomException(400, "Must have role tour guide");
             }
             User user = new User();
             user.setId(tourInstanceRequest.getTourGuide());
@@ -61,6 +60,7 @@ public class TourInstanceService implements ITourInstanceService {
     }
 
     @Override
+    @Transactional
     public void updateTourInstance(TourInstanceRequest tourInstanceRequest) {
         TourInstance tourInstance = tourInstanceRepository.findById(tourInstanceRequest.getId()).orElseThrow(
                 () -> new CustomException(404, "Can't found tour instance")
@@ -70,7 +70,7 @@ public class TourInstanceService implements ITourInstanceService {
                 () -> new CustomException(404, "Can't found tour guide"));
 
         if (!user.getRole().equals(Role.TOUR_GUIDE)) {
-            throw new CustomException(400, "must have role tour guide");
+            throw new CustomException(400, "Must have role tour guide");
         }
 
         if (tourInstance.getTourGuide() == null ||
@@ -92,6 +92,7 @@ public class TourInstanceService implements ITourInstanceService {
     }
 
     @Override
+    @Transactional
     public void deleteTourInstance(Long tourInstanceId) {
         tourInstanceRepository.deleteById(tourInstanceId);
     }
