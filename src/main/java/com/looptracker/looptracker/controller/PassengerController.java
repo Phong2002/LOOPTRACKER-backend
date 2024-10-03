@@ -1,7 +1,7 @@
 package com.looptracker.looptracker.controller;
 
 import com.looptracker.looptracker.dto.PassengerDto;
-import com.looptracker.looptracker.service.PassengerService;
+import com.looptracker.looptracker.service.IPassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("api/v1/passenger")
 public class PassengerController {
     @Autowired
-    private PassengerService passengerService;
+    private IPassengerService passengerService;
 
     @GetMapping("/get-all")
     public ResponseEntity<?> getAllPassengers(Pageable pageable) {

@@ -2,7 +2,7 @@ package com.looptracker.looptracker.controller;
 
 import com.looptracker.looptracker.dto.request.TourPackageRequest;
 import com.looptracker.looptracker.mapper.TourPackageMapper;
-import com.looptracker.looptracker.service.TourPackageService;
+import com.looptracker.looptracker.service.ITourPackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/tour-package")
 public class TourPackageController {
     @Autowired
-    private TourPackageService tourPackageService;
+    private ITourPackageService tourPackageService;
 
     @Autowired
     private TourPackageMapper tourPackageMapper;
