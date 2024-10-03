@@ -24,7 +24,7 @@ public class TourAssignment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "easy_rider")
-    private User easyRider;
+    private User rider;
 
     @Column(name = "license_plates")
     private String licensePlates;
