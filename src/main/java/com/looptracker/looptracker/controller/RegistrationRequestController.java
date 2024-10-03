@@ -2,7 +2,6 @@ package com.looptracker.looptracker.controller;
 
 import com.looptracker.looptracker.dto.RegistrationRequestDto;
 import com.looptracker.looptracker.dto.request.SigninForm;
-import com.looptracker.looptracker.repository.IRegistrationRequestRepository;
 import com.looptracker.looptracker.service.IRegistrationRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +13,6 @@ public class RegistrationRequestController {
 
     @Autowired
     private IRegistrationRequestService registrationRequestService;
-
-    @Autowired
-    private IRegistrationRequestRepository registrationRequestRepository;
 
     @PostMapping("easy-rider")
     public ResponseEntity<?> registrationRequest(@RequestBody RegistrationRequestDto registrationRequestDto) {
