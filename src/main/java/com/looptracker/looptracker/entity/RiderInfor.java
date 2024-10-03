@@ -1,5 +1,7 @@
 package com.looptracker.looptracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.looptracker.looptracker.entity.enums.DriverStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +22,13 @@ public class RiderInfor {
     @Column(name = "citizen_id_number", length = 50)
     private String citizenIdNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonBackReference
     private User user;
+
+    @Column(name = "rider_status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private DriverStatus riderStatus;
 
 }

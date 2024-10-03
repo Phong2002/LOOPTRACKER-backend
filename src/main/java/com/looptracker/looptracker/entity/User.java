@@ -1,6 +1,7 @@
 package com.looptracker.looptracker.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.looptracker.looptracker.entity.enums.Gender;
 import com.looptracker.looptracker.entity.enums.Role;
 import jakarta.persistence.*;
@@ -43,5 +44,9 @@ public class User {
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToOne(mappedBy = "user")
+    @JsonManagedReference
+    private RiderInfor riderInfors;
 
 }
