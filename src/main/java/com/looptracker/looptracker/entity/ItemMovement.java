@@ -1,5 +1,6 @@
 package com.looptracker.looptracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.looptracker.looptracker.entity.enums.ItemMovementType;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,10 +16,12 @@ import java.time.LocalDateTime;
 public class ItemMovement {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "item", nullable = false)
+    @JsonIgnore
     private Item item;
 
     @Column(name = "type", nullable = false)

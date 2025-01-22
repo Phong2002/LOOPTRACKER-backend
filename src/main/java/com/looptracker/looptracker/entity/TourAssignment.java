@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -22,11 +26,14 @@ public class TourAssignment {
     @JoinColumn(name = "passenger")
     private Passenger passenger;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "easy_rider")
     private User rider;
 
     @Column(name = "license_plates")
     private String licensePlates;
+
+    @OneToMany(mappedBy = "tourAssignments")
+    private List<AssignmentItem> assignmentItems ;
 
 }

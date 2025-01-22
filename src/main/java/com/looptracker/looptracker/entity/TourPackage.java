@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "tour_packages", schema = "looptracker")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class TourPackage {
+public class TourPackage extends BaseEntity{
     @Id
     @Column(name = "id", nullable = false)
     private String id;
@@ -33,12 +33,6 @@ public class TourPackage {
 
     @Column(name = "price", nullable = false)
     private Long price;
-
-    @Column(name = "create_at", nullable = false)
-    private LocalDateTime createAt;
-
-    @Column(name = "update_at", nullable = false)
-    private LocalDateTime updateAt;
 
     @OneToMany(mappedBy = "tourPackage", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference

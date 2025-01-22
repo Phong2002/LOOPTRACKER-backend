@@ -8,8 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Table(name = "tour_instances", schema = "looptracker")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class TourInstance {
+public class TourInstance extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -28,6 +28,9 @@ public class TourInstance {
     @JoinColumn(name = "tour_package", nullable = false)
     private TourPackage tourPackage;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
@@ -36,11 +39,17 @@ public class TourInstance {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "tour_guide")
+    @JoinColumn(name = "tour_guide", nullable = true)
     private User tourGuide;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private TourInstanceStatus status;
+
+    @OneToMany(mappedBy = "tourInstances")
+    private List<TourAssignment> tourAssignments ;
+
+    @Column(name = "is_complete")
+    private Boolean isComplete;
 
 }

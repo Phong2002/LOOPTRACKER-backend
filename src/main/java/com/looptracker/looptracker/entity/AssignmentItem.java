@@ -1,5 +1,6 @@
 package com.looptracker.looptracker.entity;
 
+import com.looptracker.looptracker.entity.enums.AssignmentStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import lombok.Setter;
 public class AssignmentItem {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -25,6 +27,7 @@ public class AssignmentItem {
     private Integer quantity;
 
     @Column(name = "status", nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private AssignmentStatus status;
 
 }

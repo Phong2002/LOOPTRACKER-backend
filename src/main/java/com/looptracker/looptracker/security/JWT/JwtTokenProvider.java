@@ -1,13 +1,18 @@
 package com.looptracker.looptracker.security.JWT;
 
+import com.looptracker.looptracker.entity.User;
+import com.looptracker.looptracker.service.IUserService;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 @Slf4j
@@ -19,11 +24,19 @@ public class JwtTokenProvider {
     @Value("${jwt.expiration}")
     private long jwtExpirationMs;
 
+    @Autowired
+    IUserService userService;
+
     public String generateJwtToken(Authentication authentication) {
 
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
+        User user = userService.findByUsername(userPrincipal.getUsername());
+
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", user.getRole().toString());
 
         return Jwts.builder()
+                .setClaims(claims)
                 .setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))

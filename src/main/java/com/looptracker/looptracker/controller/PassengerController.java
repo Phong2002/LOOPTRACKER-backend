@@ -1,6 +1,7 @@
 package com.looptracker.looptracker.controller;
 
 import com.looptracker.looptracker.dto.PassengerDto;
+import com.looptracker.looptracker.repository.IPassengerRepository;
 import com.looptracker.looptracker.service.IPassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -16,8 +17,16 @@ public class PassengerController {
     private IPassengerService passengerService;
 
     @GetMapping("/get-all")
-    public ResponseEntity<?> getAllPassengers(Pageable pageable) {
-        return ResponseEntity.ok(passengerService.getPassengers(pageable));
+    public ResponseEntity<?> getAllPassengers(Pageable pageable,
+                                              @RequestParam(required = false) String search,
+                                              @RequestParam(required = false) String status)
+    {
+        return ResponseEntity.ok(passengerService.getPassengers(search,status,pageable));
+    }
+
+    @GetMapping("get-all/no-tour")
+    public ResponseEntity<?> getALlPassengerNoTour(){
+        return ResponseEntity.ok(passengerService.getPassengersNoTour());
     }
 
     @PostMapping("/create")
@@ -33,8 +42,8 @@ public class PassengerController {
     }
 
     @DeleteMapping("delete")
-    public ResponseEntity<?> deletePassenger(@RequestBody List<String> passengerDto) {
-        passengerService.deletePassenger(passengerDto);
+    public ResponseEntity<?> deletePassenger(@RequestParam String id) {
+        passengerService.deletePassenger(id);
         return ResponseEntity.ok("Passenger deleted");
     }
 

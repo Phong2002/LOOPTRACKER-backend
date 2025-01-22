@@ -1,7 +1,7 @@
 package com.looptracker.looptracker.dto;
 
 import com.looptracker.looptracker.entity.Item;
-import com.looptracker.looptracker.entity.TourAssignment;
+import com.looptracker.looptracker.entity.enums.AssignmentStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,8 +15,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class AssignmentItemDto {
     private String id;
-    private TourAssignment tourAssignments;
-    private Item item;
+    private ItemDto item;
     private Byte quantity;
-    private String status;
+    private AssignmentStatus status;
 }

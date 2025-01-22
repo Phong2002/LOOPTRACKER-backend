@@ -29,6 +29,11 @@ public class UserDetailsImpl implements UserDetails {
         return user.getUsername();
     }
 
+    @Override
+    public boolean isAccountNonLocked() {
+        return user.getIsAccountNonLocked();
+    }
+
     public String getUserId() {
         return user.getId();
     }

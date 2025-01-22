@@ -1,5 +1,6 @@
 package com.looptracker.looptracker.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.looptracker.looptracker.entity.enums.Gender;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -14,6 +15,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Accessors(chain = true)
 @SuperBuilder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RegistrationRequestDto {
     private String id;
     private String firstName;
@@ -24,5 +26,10 @@ public class RegistrationRequestDto {
     private String email;
     private String licenseNumber;
     private String citizenIdNumber;
-
+    private String address;
+    private String status;
+    private String cccdFront;
+    private String cccdBack;
+    private String gplxFront;
+    private String gplxBack;
 }

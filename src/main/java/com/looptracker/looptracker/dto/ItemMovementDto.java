@@ -1,6 +1,5 @@
 package com.looptracker.looptracker.dto;
 
-import com.looptracker.looptracker.entity.Item;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +14,7 @@ import java.time.LocalDateTime;
 @SuperBuilder
 public class ItemMovementDto {
     private String id;
-    private Item item;
+//    private Item item;
     private String type;
     private LocalDateTime time;
     private String description;

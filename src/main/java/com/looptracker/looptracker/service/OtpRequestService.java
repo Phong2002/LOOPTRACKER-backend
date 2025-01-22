@@ -24,7 +24,6 @@ public class OtpRequestService implements IOtpRequestService {
     @Transactional
     public VerifyOtpResponse verifyOtp(String email, String otp) {
         Optional<OtpRequest> optionalOtpRequest = Optional.ofNullable(otpRequestRepository.findByEmail(email));
-        VerifyOtpResponse verifyOtpResponse = new VerifyOtpResponse();
 
         if (optionalOtpRequest.isEmpty()) {
             return VerifyOtpResponse.builder().code(10001).success(false).message("Không tìm thấy OTP").build();
@@ -32,9 +31,8 @@ public class OtpRequestService implements IOtpRequestService {
         OtpRequest otpRequest = optionalOtpRequest.get();
         if (!otpRequest.getOtp().equals(otp)) {
             return VerifyOtpResponse.builder().code(10002).success(false).message("Mã OTP không khớp").build();
-
         }
-        if (LocalDateTime.now().isBefore(otpRequest.getExpiresAt())) {
+        if (LocalDateTime.now().isAfter(otpRequest.getExpiresAt())) {
             return VerifyOtpResponse.builder().code(10003).success(false).message("Mã OTP hết hạn").build();
         }
         RegistrationRequest registrationRequest = registrationRequestRepository.findByEmail(email);

@@ -6,7 +6,7 @@ public class OTPGenerator {
 
     public static String generateOTP() {
         Random random = new Random();
-        int otp = 100000 + random.nextInt(900000); // Tạo số ngẫu nhiên từ 100000 đến 999999
+        int otp = 10000 + random.nextInt(90000); // Tạo số ngẫu nhiên từ 100000 đến 999999
         return String.valueOf(otp);
     }
 }

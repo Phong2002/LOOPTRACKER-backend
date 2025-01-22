@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,9 +15,11 @@ import java.time.LocalDateTime;
 @SuperBuilder
 public class DetailedItineraryDto {
     private Integer id;
-    private String route;
+    private String from;
+    private String to;
     private Integer day;
     private String description;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
+    private List<WayPointDto> wayPoints;
 }

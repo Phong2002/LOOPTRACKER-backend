@@ -5,8 +5,14 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.looptracker.looptracker.entity.enums.Gender;
 import com.looptracker.looptracker.entity.enums.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -48,5 +54,17 @@ public class User {
     @OneToOne(mappedBy = "user")
     @JsonManagedReference
     private RiderInfor riderInfors;
+
+    @Column(name = "create_at")
+    @CreationTimestamp
+    private LocalDateTime createAt;
+
+    @NotNull
+    @Column(name = "is_account_non_locked", nullable = false)
+    private Boolean isAccountNonLocked = false;
+
+    @Lob
+    @Column(name = "avatarUrl")
+    private String avatarUrl;
 
 }

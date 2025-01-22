@@ -18,18 +18,27 @@ public class TourAssignmentController {
 
     @PostMapping("create")
     public ResponseEntity<?> createTourAssignment(@RequestBody TourAssignmentRequest tourAssignmentRequest){
-        tourAssignmentService.addTourAssignment(tourAssignmentRequest);
+//        tourAssignmentService.addTourAssignment(tourAssignmentRequest);
         return ResponseEntity.ok("Create tour assignment successfully");
     }
 
     @PutMapping("update")
     public ResponseEntity<?> updateTourAssignment(@RequestBody TourAssignmentRequest tourAssignmentRequest){
-        tourAssignmentService.updateTourAssignment(tourAssignmentRequest);
+//        tourAssignmentService.updateTourAssignment(tourAssignmentRequest);
         return ResponseEntity.ok("Update tour assignment successfully");
     }
 
     @GetMapping("get-all")
     public ResponseEntity<?> getAllByTourInstanceId(@RequestParam(name = "tourId")String tourId, Pageable pageable){
         return ResponseEntity.ok(tourAssignmentService.getAllTourAssignments(pageable));
+    }
+
+    @GetMapping("get/{id}")
+    public ResponseEntity<?> getById(@PathVariable(name = "id")String id, Pageable pageable){
+        return ResponseEntity.ok(tourAssignmentService.getById(id));
+    }
+    @GetMapping("get-by-tour-instance")
+    public ResponseEntity<?> getById(@RequestParam(name = "tourInstanceId")Long id, Pageable pageable){
+        return ResponseEntity.ok(tourAssignmentService.getAllTourAssignmentsByTourInstance(pageable,id));
     }
 }

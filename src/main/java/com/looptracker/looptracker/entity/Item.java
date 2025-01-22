@@ -8,9 +8,10 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "items", schema = "looptracker")
-public class Item {
+public class Item extends BaseEntity{
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @Column(name = "name", nullable = false)
@@ -18,5 +19,8 @@ public class Item {
 
     @Column(name = "type", nullable = false)
     private String type;
+
+    @Column(name = "image")
+    private String image;
 
 }

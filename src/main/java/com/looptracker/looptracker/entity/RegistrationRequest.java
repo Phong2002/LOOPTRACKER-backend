@@ -3,6 +3,7 @@ package com.looptracker.looptracker.entity;
 import com.looptracker.looptracker.entity.enums.Gender;
 import com.looptracker.looptracker.entity.enums.RegistrationStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
@@ -45,5 +46,21 @@ public class RegistrationRequest {
 
     @Column(name = "create_at", nullable = false)
     private LocalDateTime createAt;
+
+    @NotNull
+    @Column(name = "address", nullable = false)
+    private String address;
+
+    @Column(name = "cccd_front")
+    private String cccdFront;
+
+    @Column(name = "cccd_back")
+    private String cccdBack;
+
+    @Column(name = "gplx_front")
+    private String gplxFront;
+
+    @Column(name = "gplx_back")
+    private String gplxBack;
 
 }

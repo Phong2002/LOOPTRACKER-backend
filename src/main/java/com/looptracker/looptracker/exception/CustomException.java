@@ -1,15 +1,20 @@
 package com.looptracker.looptracker.exception;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
 @Data
-@AllArgsConstructor
 public class CustomException extends RuntimeException {
-    private int statusCode;
-    private String message;
 
-    public ErrorMessage toErrorMessage(){
-        ErrorMessage errorMessage = new ErrorMessage(statusCode,message);
-        return errorMessage;
+    private static final long serialVersionUID = 1L;
+    private final String errorCode;   // Custom error code
+    private final HttpStatus status;  // HTTP status
+
+    public CustomException(String errorCode, String message, HttpStatus status) {
+        super(message);
+        this.errorCode = errorCode;
+        this.status = status;
     }
+
+
 }
